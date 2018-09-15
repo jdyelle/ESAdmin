@@ -1,0 +1,108 @@
+﻿extends layout
+
+block variables
+
+block content
+        .row
+          .col-lg-12
+            br
+        .row
+          if (clusterHealth.status === 'green')
+            .col-lg-12
+              .panel.panel-green
+                .panel-heading
+                  | #{clusterHealth.cluster_name} Cluster Status Green
+                .panel-body
+                  | The cluster is green.  Rolling restarts or node maintenance can proceed.  If you are going to take a node out, please synced flush and/or remove nodes from the cluster gracefully (see maintenance page).
+          else if (clusterHealth.status === 'yellow')        
+            .col-lg-12
+              .panel.panel-yellow
+                .panel-heading
+                  | #{clusterHealth.cluster_name} Cluster Status Yellow
+                .panel-body
+                  | The cluster is yellow.  Please wait for shards to be allocated before performing additional maintenance, or add additional nodes to allow for replica balancing.
+          else
+            .col-lg-12
+              .panel.panel-red
+                .panel-heading
+                  | #{clusterHealth.cluster_name} Cluster Status Red
+                .panel-body
+                  | The cluster is Red.  Either the cluster is unavailable or the cluster is not fault tolerant.  Please take action immediately.
+        .row
+          .col-lg-6
+            .panel.panel-default
+              .panel-heading
+                | Active Shards (Percentage)
+              // /.panel-heading
+              .panel-body
+                p
+                  strong Shard Health
+                  span.pull-right.text-muted #{clusterHealth.active_shards_percent_as_number}% Healthy
+                if (clusterHealth.status === 'green')
+                  .progress.progress-striped
+                    .progress-bar.progress-bar-success(role='progressbar', aria-valuenow=clusterHealth.active_shards_percent_as_number, aria-valuemin='0', aria-valuemax='100', style=('width: ' + clusterHealth.active_shards_percent_as_number + '%'))
+                      span.sr-only #{clusterHealth.active_shards_percent_as_number}% Healthy
+                if (clusterHealth.status === 'yellow')
+                  .progress.progress-striped
+                    .progress-bar.progress-bar-warning(role='progressbar', aria-valuenow=clusterHealth.active_shards_percent_as_number, aria-valuemin='0', aria-valuemax='100', style=('width: ' + clusterHealth.active_shards_percent_as_number + '%'))
+                      span.sr-only #{clusterHealth.active_shards_percent_as_number}% Healthy
+                if (clusterHealth.status === 'red')
+                  .progress.progress-striped
+                    .progress-bar.progress-bar-danger(role='progressbar', aria-valuenow=clusterHealth.active_shards_percent_as_number, aria-valuemin='0', aria-valuemax='100', style=('width: ' + clusterHealth.active_shards_percent_as_number + '%'))
+                      span.sr-only #{clusterHealth.active_shards_percent_as_number}% Healthy
+              // /.panel-body
+            // /.panel
+          // /.col-lg-6
+          .col-lg-6
+            .panel.panel-default
+              .panel-heading
+                | Task Queue Delay
+              // /.panel-heading
+              .panel-body
+                h1 #{clusterHealth.task_max_waiting_in_queue_millis} ms
+              // /.panel-body
+            // /.panel
+          // /.col-lg-6
+        .row
+          .col-lg-6
+            .panel.panel-default
+              .panel-heading
+                | Reporting Nodes
+              // /.panel-heading
+              .panel-body
+                  ul(id='nodes')
+                    each item in nodeStatus.nodes
+                      li= item.name 
+                        | #{' [ '} #{item.host} #{' ] '}
+              // /.panel-body
+            // /.panel
+          // /.col-lg-6
+          .col-lg-6
+            .panel.panel-default
+              .panel-heading
+                | Cluster Available Resources
+              // /.panel-heading
+              .panel-body
+                p
+                  strong CPU (Process)
+                  span.pull-right.text-muted #{clusterResources.cpu}% Used
+                .progress.progress-striped
+                  .progress-bar.progress-bar-info(role='progressbar', aria-valuenow=clusterResources.cpu, aria-valuemin='0', aria-valuemax='100', style=('width: ' + clusterResources.cpu + '%'))
+                    span.sr-only #{clusterResources.cpu}% Used
+                p
+                  strong Memory (Heap)
+                  span.pull-right.text-muted #{clusterResources.mem}% Used
+                .progress.progress-striped
+                  .progress-bar.progress-bar-info(role='progressbar', aria-valuenow=clusterResources.mem, aria-valuemin='0', aria-valuemax='100', style=('width: ' + clusterResources.mem + '%'))
+                    span.sr-only #{clusterResources.mem}% Used
+                p
+                  strong Storage (Partition)
+                  span.pull-right.text-muted #{clusterResources.disk}% Used
+                .progress.progress-striped
+                  .progress-bar.progress-bar-info(role='progressbar', aria-valuenow=clusterResources.disk, aria-valuemin='0', aria-valuemax='100', style=('width: ' + clusterResources.disk + '%'))
+                    span.sr-only #{clusterResources.disk}% Used
+              // /.panel-body
+            // /.panel
+          // /.col-lg-6
+
+
