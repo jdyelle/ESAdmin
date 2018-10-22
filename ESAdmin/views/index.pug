@@ -71,9 +71,10 @@ block content
               // /.panel-heading
               .panel-body
                   ul(id='nodes')
-                    each item in nodeStatus.nodes
+                    each item in nodeStatus
                       li= item.name 
-                        | #{' [ '} #{item.host} #{' ] '}
+                        | #{' [ '} #{item.host} #{' ] '} 
+                        | #{' [ '} #{item.roles} #{' ] '}
               // /.panel-body
             // /.panel
           // /.col-lg-6
@@ -84,19 +85,19 @@ block content
               // /.panel-heading
               .panel-body
                 p
-                  strong CPU (Process)
+                  strong CPU (Process) [All Nodes]
                   span.pull-right.text-muted #{clusterResources.cpu}% Used
                 .progress.progress-striped
                   .progress-bar.progress-bar-info(role='progressbar', aria-valuenow=clusterResources.cpu, aria-valuemin='0', aria-valuemax='100', style=('width: ' + clusterResources.cpu + '%'))
                     span.sr-only #{clusterResources.cpu}% Used
                 p
-                  strong Memory (Heap)
+                  strong Memory (Heap) [Data Nodes]
                   span.pull-right.text-muted #{clusterResources.mem}% Used
                 .progress.progress-striped
                   .progress-bar.progress-bar-info(role='progressbar', aria-valuenow=clusterResources.mem, aria-valuemin='0', aria-valuemax='100', style=('width: ' + clusterResources.mem + '%'))
                     span.sr-only #{clusterResources.mem}% Used
                 p
-                  strong Storage (Partition)
+                  strong Storage (Partition) [Data Nodes]
                   span.pull-right.text-muted #{clusterResources.disk}% Used
                 .progress.progress-striped
                   .progress-bar.progress-bar-info(role='progressbar', aria-valuenow=clusterResources.disk, aria-valuemin='0', aria-valuemax='100', style=('width: ' + clusterResources.disk + '%'))

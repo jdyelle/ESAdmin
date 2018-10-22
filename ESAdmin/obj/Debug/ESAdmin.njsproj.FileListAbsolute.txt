@@ -1,0 +1,6 @@
+d:\users\jer\source\repos\ESAdmin\ESAdmin\obj\Debug\ESAdmin.njsprojResolveAssemblyReference.cache
+d:\users\jer\source\repos\ESAdmin\ESAdmin\obj\Debug\ESAdmin.njsproj.CoreCompileInputs.cache
+d:\users\jer\source\repos\ESAdmin\ESAdmin\bin\Microsoft.NodejsTools.WebRole.dll
+G:\Dev\Projects\ESAdmin\ESAdmin\obj\Debug\ESAdmin.njsprojAssemblyReference.cache
+G:\Dev\Projects\ESAdmin\ESAdmin\obj\Debug\ESAdmin.njsproj.CoreCompileInputs.cache
+G:\Dev\Projects\ESAdmin\ESAdmin\bin\Microsoft.NodejsTools.WebRole.dll
