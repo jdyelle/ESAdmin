@@ -1,0 +1,60 @@
+﻿extends layout
+
+block variables
+
+block content
+        script
+          | $(document).ready(function(){ $('#nodes').DataTable(); } );
+        .row
+          .col-lg-12
+            br
+        .row
+          .col-lg-12
+            div(class="panel panel-" + clusterHealth.status)    
+              .panel-heading
+                | #{clusterHealth.cluster_name} Node List
+              .panel-body
+                table(id='nodes' width='100%')
+                  thead
+                    tr
+                      th
+                        | &nbsp;
+                      th(colspan=3)
+                        | Machine
+                      th(colspan=3)
+                        | Elastic
+                    tr
+                      th
+                        | Hostname
+                      th
+                        | CPU
+                      th
+                        | Memory
+                      th
+                        | Disk
+                      th
+                        | CPU
+                      th
+                        | Memory
+                      th
+                        | Address
+                  tbody                    
+                    each node, i in nodes
+                      tr
+                        td.wide 
+                          | #{node.HostName}
+                        td.data
+                          | #{node.hostCPU}
+                        td.data 
+                          | #{node.hostMem}
+                        td.data 
+                          | #{node.hostDisk}
+                        td.data 
+                          | #{node.esCPU}
+                        td.data 
+                          | #{node.esMem}
+                        td.wide(style='text-align: center;')
+                          | #{node.esAddress}
+
+
+

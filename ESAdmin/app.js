@@ -19,7 +19,7 @@ var sr = require('sync-request');
 
 
 var routes = require('./routes/index');
-//var nodes = require('./routes/nodes');
+var nodes = require('./routes/nodes');
 //var indices = require('./routes/indices');
 //var templates = require('./routes/templates');
 //var maintenance = require('./routes/maintenance');
@@ -40,7 +40,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-//app.use('/nodes', nodes);
+app.use('/nodes', nodes);
 //app.use('/indices', indices);
 //app.use('/templates', templates);
 //app.use('/maintenance', maintenance);

@@ -179,6 +179,7 @@
     <Content Include="public\vendor\metisMenu\metisMenu.min.css" />
     <Content Include="public\vendor\morrisjs\morris.css" />
     <Content Include="README.md" />
+    <Content Include="views\nodes.pug" />
     <Content Include="views\index.pug" />
     <Content Include="views\layout.pug" />
     <Content Include="views\error.pug" />
